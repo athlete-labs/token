@@ -7,6 +7,9 @@
 
 # production
 /build
+/artifacts
+/build
+/cache
 
 # misc
 .DS_Store
