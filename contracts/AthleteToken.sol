@@ -17,7 +17,6 @@ contract AthleteToken is ERC1155 {
 
     mapping(address => Operator) public operators;
     mapping(address => Athlete) public athletes;
-    mapping(address => Sponsor) public sponsors;
     mapping(address => mapping(uint => Stake)) public stakeSubscriptions;
     
     struct Operator {
@@ -32,12 +31,6 @@ contract AthleteToken is ERC1155 {
 
     struct Athlete {
         uint8 sport;
-        string name;
-        string url;
-        bool active;
-    }
-
-    struct Sponsor {
         string name;
         string url;
         bool active;
@@ -84,12 +77,6 @@ contract AthleteToken is ERC1155 {
     function registerAthlete(address _user, uint8 _idSport, string memory _name, string memory _url) public {
         require(!athletes[_user].active);
         athletes[_user] = Athlete(_idSport, _name, _url, true);
-        payFee();
-    }
-
-    function registerSponsor(address _user, string memory _name, string memory _url) public {
-        require(!sponsors[_user].active);
-        sponsors[_user] = Sponsor(_name, _url, true);
         payFee();
     }
 
